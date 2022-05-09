@@ -8,21 +8,7 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB}) => {
     const [Busq, setBusq] = useState("")
     const [ResultadoB, setResultadoB] = useState("Busca...")
 
-    
-  
-  useEffect(() => {
-    getEventos()
-  },[Db])
-
-  //Funcion busqueda
-  function BusquedaR () {
-    const label = document.getElementById("busquedares").value
-    const busqueda = Db.filter(e=>e.title === (label + " - " + nombreCabañaB))
-    console.log(busqueda)
-    setResultadoB(busqueda)
-  }
-
-  //Llamada BD y posterior arisgancion de useState
+    //Llamada BD y posterior arisgancion de useState
   async function getEventos(){
     const DB = []
     const eventosCol = collection(db, nombreCabaña);
@@ -39,6 +25,21 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB}) => {
     }
     setDb(DB)
   }
+    
+  
+  useEffect(() => {
+    getEventos()
+  },[Db])
+
+  //Funcion busqueda
+  function BusquedaR () {
+    const label = document.getElementById("busquedares").value
+    const busqueda = Db.filter(e=>e.title === (label + " - " + nombreCabañaB))
+    console.log(busqueda)
+    setResultadoB(busqueda)
+  }
+
+  
 
   //Eliminar Reserva de idG y id
   async function EliminarReserva (id, idG) {

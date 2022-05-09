@@ -20,7 +20,7 @@ const Cabaña7 = () => {
 
   useEffect(() => {
     getEventos()
-  }, [])
+  }, [Db])
   
   return (
     <>
