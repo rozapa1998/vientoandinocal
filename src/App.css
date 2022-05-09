@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-image: url("../src/media/background.png");
+  background-size: cover;
+}
+
+.nav-Item{
+  color: white;
+}
+nav-Item:hover{
+  background-color: blue;
+}
+
+.color-font{
+  color: white;
+}
+
+/*BG CABAÑAS COLORS*/
+.bg-cab7{
+  background-color: deeppink;
+}
+
+.bg-cab8{
+  background-color:indigo
+}
+.bg-cab9{
+  background-color:salmon
+}
+
+.bg-cab10{
+  background-color:navy
+}
