@@ -3,10 +3,6 @@
 import NavBar from './components/NavBar';
 //------------Footer---------------------
 import Footer from './components/Footer';
-//------------Formulario---------------------
-import Formulario from './components/Formulario';
-//------------Calendario Home---------------------
-import CalendarHome from './components/CalendarHome';
 
 //CSS
 import './App.css';
