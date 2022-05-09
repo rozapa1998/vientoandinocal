@@ -1,35 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import { db } from '../firebase/firebase'
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore/lite"
+import { deleteDoc, doc } from "firebase/firestore/lite"
 
-const TodasReservas = ({nombreCabaña, nombreCabañaB}) => {
+const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
     
-    const [Db, setDb] = useState([])
     const [Busq, setBusq] = useState("")
     const [ResultadoB, setResultadoB] = useState("Busca...")
 
-    //Llamada BD y posterior arisgancion de useState
-  async function getEventos(){
-    const DB = []
-    const eventosCol = collection(db, nombreCabaña);
-    const eventosColG = collection(db, "reservas")
-    const eventosSnapshotG = await getDocs(eventosColG);
-    const eventosSnapshot = await getDocs(eventosCol);
-    eventosSnapshot.forEach((doc)=>{
-      DB.push({...doc.data(), id:doc.id})
-    })
-    for (let index = 0; index < DB.length; index++) {
-      eventosSnapshotG.forEach((doc)=>{
-        DB[index].idG = doc.id
-      })
-    }
-    setDb(DB)
-  }
     
+    //Llamada BD y posterior arisgancion de useState
   
-  useEffect(() => {
-    getEventos()
-  },[Db])
 
   //Funcion busqueda
   function BusquedaR () {
@@ -38,8 +18,6 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB}) => {
     console.log(busqueda)
     setResultadoB(busqueda)
   }
-
-  
 
   //Eliminar Reserva de idG y id
   async function EliminarReserva (id, idG) {

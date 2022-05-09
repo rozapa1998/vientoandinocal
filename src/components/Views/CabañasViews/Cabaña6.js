@@ -46,6 +46,8 @@ const Cabaña6 = () => {
         
         <TodasReservas
         nombreCabaña={"Cabaña6"}
+        nombreCabanaB={"Cabaña 6"}
+        Db={Db}
         />
     </>
     
