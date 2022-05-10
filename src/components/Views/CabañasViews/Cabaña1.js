@@ -11,6 +11,7 @@ const Cabaña1 = () => {
   const [Db, setDb] = useState([])
 
     //Llamada BD y posterior arisgancion de useState
+  console.log(window.location)
   async function getEventos(){
     const eventosCol = collection(db, "Cabaña1");
     const eventosSnapshot = await getDocs(eventosCol);
@@ -20,7 +21,7 @@ const Cabaña1 = () => {
 
   useEffect(() => {
     getEventos()
-  }, [Db])
+  }, [])
   
   
   return (

@@ -18,8 +18,7 @@ const CalendarHome = () => {
 
   useEffect(() => {
     getEventos()
-    console.log(Db)
-  }, [Db])
+  }, [])
   
 
     return (

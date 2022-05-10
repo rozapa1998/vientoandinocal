@@ -19,7 +19,7 @@ const GastosTable = () => {
 
   useEffect(() => {
     getEventos()
-  },[Db])
+  },[])
   
   //Eliminar Gasto
   async function EliminarReserva (id) {
@@ -36,7 +36,7 @@ const GastosTable = () => {
   }
 
   //Nuevo Gasto
-  const NuevoGasto = (e) =>{
+  async function NuevoGasto (e) {
     e.preventDefault()
     //Captando Ids
     let Nombre = document.getElementById("Nombre").value
@@ -44,7 +44,7 @@ const GastosTable = () => {
     let Gasto = document.getElementById("Gasto").value
 
     //Guardando en BD
-    const docRef = addDoc(collection(db, "gastos"),{
+    const docRef = await addDoc(collection(db, "gastos"),{
       nombre: Nombre,
       fecha: Date,
       gasto: Gasto
