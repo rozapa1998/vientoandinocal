@@ -9,12 +9,20 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
     const [CDias, setCDias] = useState(0)
     const [CPersonas, setCPersonas] = useState("")
     const [XNoche, setXNoche] = useState ("")
+    const [Reserva, setReserva] = useState("0")
 
     //Handler XNoche y calculo
     const handleTotal = (e) =>{
         e.preventDefault()
         let valor = XNoche*CDias
         setTotal(valor)
+        handleResto()
+    }
+
+    const handleResto = () =>{
+        let reserva = document.getElementById("Reserva").value
+        let valorNuevo = Total - reserva
+        setReserva(valorNuevo)
     }
     
     //Chequeo Cantidad de Personas
@@ -146,7 +154,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
                         </div>
                         <div className="mb-3 col-6 col-sm-3">
                         <label className="form-label color-font">Adeuda</label>
-                            <input type="text" id="Adeuda" className="form-control" placeholder="Ej: $10000"></input>
+                            <p type="text" id="Adeuda" className="form-control" placeholder="Ej: $10000">${Reserva}</p>
                         </div>
                         
                         <div className="mb-3 col-6 col-sm-3">
