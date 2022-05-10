@@ -79,9 +79,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         <div class="alert alert-success" role="alert">
         Tu reserva fue guardada con exito
         </div>`)
-        setTimeout(() => {
-            window.location.href("https://627ad95ee8c3f20058e3717b--benevolent-praline-6165ec.netlify.app/")
-          }, 2000);
+        setTimeout(function () {window.location.href = "https://master--benevolent-praline-6165ec.netlify.app/"}, 2000);
         
     }
 
