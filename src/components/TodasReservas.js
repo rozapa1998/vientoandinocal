@@ -19,7 +19,7 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
   EliminarReserva(id)
   EliminarReservaG(idG)
   setTimeout(() => {
-    document.location.reload()
+    window.location.href("https://627ad95ee8c3f20058e3717b--benevolent-praline-6165ec.netlify.app/")
   }, 2000);
   }
 
