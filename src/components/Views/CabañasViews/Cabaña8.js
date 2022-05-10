@@ -13,7 +13,7 @@ const Cabaña8 = () => {
   //Llamada BD y posterior arisgancion de useState
   async function getEventos(){
     const DB = []
-    const eventosCol = collection(db, "Cabaña1");
+    const eventosCol = collection(db, "Cabaña8");
     const eventosColG = collection(db, "reservas")
     const eventosSnapshotG = await getDocs(eventosColG);
     const eventosSnapshot = await getDocs(eventosCol);
