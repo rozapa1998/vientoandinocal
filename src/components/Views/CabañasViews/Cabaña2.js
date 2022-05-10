@@ -10,17 +10,27 @@ const Cabaña2 = () => {
   
   const [Db, setDb] = useState([])
 
-    //Llamada BD y posterior arisgancion de useState
+  //Llamada BD y posterior arisgancion de useState
   async function getEventos(){
-    const eventosCol = collection(db, "Cabaña2");
+    const DB = []
+    const eventosCol = collection(db, "Cabaña1");
+    const eventosColG = collection(db, "reservas")
+    const eventosSnapshotG = await getDocs(eventosColG);
     const eventosSnapshot = await getDocs(eventosCol);
-    const eventosList = eventosSnapshot.docs.map(doc => doc.data())
-    setDb(eventosList)
+    eventosSnapshot.forEach((doc)=>{
+      DB.push({...doc.data(), id:doc.id})
+    })
+    for (let index = 0; index < DB.length; index++) {
+      eventosSnapshotG.forEach((doc)=>{
+        DB[index].idG = doc.id
+      })
+    }
+    setDb(DB)
   }
 
-  useEffect(() => {
-    getEventos()
-  }, [])
+useEffect(() => {
+  getEventos()
+},[])
   
   return (
     <>

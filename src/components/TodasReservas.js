@@ -7,10 +7,6 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
     const [Busq, setBusq] = useState("")
     const [ResultadoB, setResultadoB] = useState("Busca...")
 
-    
-    //Llamada BD y posterior arisgancion de useState
-  
-
   //Funcion busqueda
   function BusquedaR () {
     const label = document.getElementById("busquedares").value
@@ -19,23 +15,27 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
     setResultadoB(busqueda)
   }
 
+  function BorrarDatos (id, idG) {
+  EliminarReserva(id)
+  EliminarReservaG(idG)
+  setTimeout(() => {
+    document.location.reload()
+  }, 2000);
+  }
+
   //Eliminar Reserva de idG y id
-  async function EliminarReserva (id, idG) {
+  async function EliminarReserva (id) {
     await deleteDoc(doc(db, nombreCabaña, id))
-    EliminarReservaG(idG)
     let alerta = document.getElementById("alertB")
         alerta.innerHTML=(`
         <div class="alert alert-success" role="alert">
         El registro se <strong>elimino</strong> correctamente
         </div>`)
-        setTimeout(() => {
-            alerta.innerHTML=("")
-            window.location.reload()
-        }, 2500);
   }
-  async function EliminarReservaG (idG){
-    await deleteDoc(doc(db, "reservas", idG))
-  }
+
+  function EliminarReservaG (idG){
+    deleteDoc(doc(db, "reservas", idG))
+  } 
 
     return (
     <>
@@ -58,16 +58,17 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
                             <th scope="col">Borrar</th>
                           </tr>
                         </thead>
-                    {Db.map((e)=>(   
+                    {Db.map((e)=>(
                         <tbody key={e.id}>
                           <tr>
-                            <th scope="row">{e.id}</th>
+                            <th scope="row">{e.id.substr(1,4)}</th>
                             <td>{e.title}</td>
                             <td>{e.CantPersonas}</td>
                             <td>$ {e.seña}</td>
                             <td>$ {e.adeuda}</td>
                             <td>$ {e.total}</td>
-                            <td><button type="button" className="btn-danger btn" onClick={()=>EliminarReserva(e.id, e.idG)}>Borrar</button></td>
+                            {console.log(e.idG)}
+                            <td><button type="button" className="btn-danger btn" onClick={()=>BorrarDatos(e.id, e.idG)}>Borrar</button></td>
                           </tr>
                         </tbody>
                       

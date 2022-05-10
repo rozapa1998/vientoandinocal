@@ -30,7 +30,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
     }
 
     //Generacion Nueva Reserva
-    const NuevaReserva = (e) => {
+    async function NuevaReserva (e) {
         e.preventDefault()
         //Variables para el objeto de reservas
         let NombreTitutlar = document.getElementById("NombreTitular").value
@@ -44,7 +44,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         let Observaciones  = document.getElementById("Observaciones").value
 
         //Guardado en collection CabañaX
-        const docRef = addDoc(collection(db, nombreDB),{
+        const docRef = await addDoc(collection(db, nombreDB),{
             title: NombreTitutlar+nombreCabana ,
             CantPersonas: CantPersonas,
             TipoDesayuno: TDesayuno,
@@ -59,7 +59,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         )
 
         //Guardado en collection reservas
-        const docRefGeneral = addDoc(collection(db, "reservas"),{ 
+        const docRefGeneral = await addDoc(collection(db, "reservas"),{ 
             title: NombreTitutlar+nombreCabana ,
             CantPersonas: CantPersonas,
             TipoDesayuno: TDesayuno,
@@ -71,6 +71,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
             observaciones: Observaciones,
             color: color
         })
+
         console.log(docRef)
         console.log(docRefGeneral)
         let alerta = document.getElementById("alertS")
@@ -78,11 +79,10 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         <div class="alert alert-success" role="alert">
         Tu reserva fue guardada con exito
         </div>`)
-        
         setTimeout(() => {
-            alerta.innerHTML=("")
-            window.location.reload()
-        }, 2000);
+            document.location.reload()
+          }, 2000);
+        
     }
 
     //Calculo de Fecha
