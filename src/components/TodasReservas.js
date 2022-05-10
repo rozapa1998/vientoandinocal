@@ -18,7 +18,7 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
   function BorrarDatos (id, idG) {
   EliminarReserva(id)
   EliminarReservaG(idG)
-  setTimeout(function () {window.location.href = "https://master--benevolent-praline-6165ec.netlify.app/"}, 2000);
+  setTimeout(function () {window.location.href = "https://vientoandinocalendario.netlify.app/"}, 2000);
 }
 
   //Eliminar Reserva de idG y id

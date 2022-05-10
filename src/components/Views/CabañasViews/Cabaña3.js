@@ -51,7 +51,8 @@ useEffect(() => {
         nombreCabana={" - Cabaña 3"}
         capacidad={4}
         color={"green"}
-        nombreDB={"Cabaña3"}/>
+        nombreDB={"Cabaña3"}
+        />
         <TodasReservas
         nombreCabaña={"Cabaña3"}
         nombreCabanaB={"Cabaña 3"}

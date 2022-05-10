@@ -79,7 +79,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         <div class="alert alert-success" role="alert">
         Tu reserva fue guardada con exito
         </div>`)
-        setTimeout(function () {window.location.href = "https://master--benevolent-praline-6165ec.netlify.app/"}, 2000);
+        setTimeout(function () {window.location.href = "https://vientoandinocalendario.netlify.app/"}, 2000);
         
     }
 
