@@ -16,12 +16,12 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         e.preventDefault()
         let valor = XNoche*CDias
         setTotal(valor)
-        handleResto()
+        handleResto(valor)
     }
 
-    const handleResto = () =>{
+    const handleResto = (valor) =>{
         let reserva = document.getElementById("Reserva").value
-        let valorNuevo = Total - reserva
+        let valorNuevo = valor - reserva
         setReserva(valorNuevo)
     }
     
@@ -46,8 +46,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
         let TDesayuno      = document.getElementById("TDesayuno").value
         let Start          = document.getElementById("CheckInDate").value + "T12:00:00"
         let End            = document.getElementById("CheckOutDate").value + "T11:00:00"
-        let Reserva        = document.getElementById("Reserva").value
-        let Adeuda         = document.getElementById("Adeuda").value
+        let Seña           = document.getElementById("Reserva").value
         let Total          = document.getElementById("Total").value
         let Observaciones  = document.getElementById("Observaciones").value
 
@@ -58,8 +57,8 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
             TipoDesayuno: TDesayuno,
             start: Start,
             end: End,
-            reserva: Reserva,
-            adeuda: Adeuda,
+            reserva: Seña,
+            adeuda: Reserva,
             total: Total,
             observaciones: Observaciones,
             color: color
@@ -74,7 +73,7 @@ const Formulario = ({nombreCabana, capacidad, color, nombreDB}) => {
             start: Start,
             end: End,
             reserva: Reserva,
-            adeuda: Adeuda,
+            adeuda: Reserva,
             total: Total,
             observaciones: Observaciones,
             color: color
