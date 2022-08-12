@@ -5,19 +5,18 @@ import { deleteDoc, doc } from "firebase/firestore/lite"
 const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
     
     const [Busq, setBusq] = useState("")
-    const [ResultadoB, setResultadoB] = useState("Busca...")
+    const [ResultadoB, setResultadoB] = useState(["Buscar..."])
 
   //Funcion busqueda
   function BusquedaR () {
-    const label = document.getElementById("busquedares").value
-    const busqueda = Db.filter(e=>e.title === (label + " - " + nombreCabañaB))
-    console.log(busqueda)
-    setResultadoB(busqueda)
+    console.log(Db)
+    const busqueda = Db.filter(e=>e.start === Busq + "T12:00:00")
+    setResultadoB(busqueda) 
   }
 
   function BorrarDatos (id, idG) {
-  EliminarReserva(id)
-  EliminarReservaG(idG)
+    EliminarReservaG(idG)
+    EliminarReserva(id)
   setTimeout(function () {window.location.href = "https://vientoandinocalendario.netlify.app/"}, 2000);
 }
 
@@ -33,7 +32,7 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
 
   function EliminarReservaG (idG){
     deleteDoc(doc(db, "reservas", idG))
-  } 
+  }
 
     return (
     <>
@@ -59,13 +58,12 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
                     {Db.map((e)=>(
                         <tbody key={e.id}>
                           <tr>
-                            <th scope="row">{e.id.substr(1,4)}</th>
+                            <th scope="row">{e.idB}</th>
                             <td>{e.title}</td>
                             <td>{e.CantPersonas}</td>
                             <td>$ {e.seña}</td>
                             <td>$ {e.adeuda}</td>
                             <td>$ {e.total}</td>
-                            {console.log(e.idG)}
                             <td><button type="button" className="btn-danger btn" onClick={()=>BorrarDatos(e.id, e.idG)}>Borrar</button></td>
                           </tr>
                         </tbody>
@@ -83,9 +81,11 @@ const TodasReservas = ({nombreCabaña, nombreCabañaB, Db}) => {
             <div className='col-12 col-sm-12'>
               <h4 className='text-white mt-4'>Busqueda</h4>
             </div>
-            <input type="text" id='busquedares' className='form-control' placeholder="Ej: Carlos Juarez" value={Busq} onChange={e => setBusq(e.target.value)}></input>
+            <input type="date" id='busquedares' className='form-control' placeholder="Ej: Carlos Juarez" value={Busq} onChange={e => setBusq(e.target.value)}></input>
             <div className='card col-12 col-sm-12 mt-3'>
-              <p className='text-center'>{ResultadoB}</p>
+              <p className='text-center'>{ResultadoB.map((e)=>(
+                <p><strong>Titular: </strong>{e.title} - <strong>C/Personas: </strong>{e.CantPersonas} - <strong>Seña: </strong>{e.seña} - <strong>Adeuda: </strong>{e.adeuda} - <strong>Total: </strong> {e.total} - <strong>Observaciones: </strong> -</p>
+              ))}</p>
             </div>
             <div className='col-12 text-center col-sm-12 mt-3'>
             <button className='btn btn-primary' onClick={BusquedaR}>Buscar</button>

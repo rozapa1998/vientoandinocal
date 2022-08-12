@@ -23,6 +23,7 @@ const Cabaña6 = () => {
     for (let index = 0; index < DB.length; index++) {
       eventosSnapshotG.forEach((doc)=>{
         DB[index].idG = doc.id
+        DB[index].idB = index
       })
     }
     setDb(DB)

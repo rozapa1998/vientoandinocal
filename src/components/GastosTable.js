@@ -39,9 +39,9 @@ const GastosTable = () => {
   async function NuevoGasto (e) {
     e.preventDefault()
     //Captando Ids
-    let Nombre = document.getElementById("Nombre").value
+    let Nombre = document.getElementById("NombreG").value
     let Date = document.getElementById("Date").value
-    let Gasto = document.getElementById("Gasto").value
+    let Gasto = Number(document.getElementById("Gasto").value)
 
     //Guardando en BD
     const docRef = await addDoc(collection(db, "gastos"),{
@@ -49,20 +49,13 @@ const GastosTable = () => {
       fecha: Date,
       gasto: Gasto
     })
-
-    console.log(docRef)
-
-    let alerta = document.getElementById("alertG")
-        alerta.innerHTML=(`
-        <div class="alert alert-success" role="alert">
-        Tu gasto fue guardada con exito
-        </div>`)
-        
-        setTimeout(() => {
-            alerta.innerHTML=("")
+    console.log(docRef)        
+        setTimeout(() => {    
             window.location.reload()
         }, 2000);
   }
+
+  let TotalCalculado = Db.reduce((acc,item)=>{return acc + item.gasto},0)
 
   return (
     <>
@@ -80,15 +73,16 @@ const GastosTable = () => {
   {Db.map((e)=>(
       <tbody key={e.id}>
       <tr>
-        <th scope="row">{e.id}</th>
-        <td>{e.title}</td>
+        <th scope="row">{(e.id).substring(0, 4)}</th>
+        <td>{e.nombre}</td>
         <td>{e.fecha}</td>
-        <td>{e.gasto}</td>
+        <td>$ {e.gasto}</td>
         <td><button type="button" className="btn-danger btn" onClick={()=>EliminarReserva(e.id)}>Borrar</button></td>
       </tr>
     </tbody>
   ))
   }
+  <h4><strong>Total = </strong>$ {TotalCalculado}</h4>
   
 </table>
     </div>
